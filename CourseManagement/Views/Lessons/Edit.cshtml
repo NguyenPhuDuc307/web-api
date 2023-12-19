@@ -1,0 +1,97 @@
+@model CourseManagement.ViewModels.LessonViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Lesson</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImagePath" />
+            <input type="hidden" asp-for="DateCreated" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" class="form-control" id="image-input" onchange="previewImage(event)"
+                    accept="image/*" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="image-preview my-2">
+                <img id="preview" width="100%" class="img-fluid" src="@Model.ImagePath" alt="Preview" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label"></label>
+                <select asp-for="CourseId" class="form-select" asp-items="ViewBag.CourseId">
+                    <option value="">-- Select Course --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Introduction" class="control-label"></label>
+                <textarea asp-for="Introduction" class="form-control"></textarea>
+                <span asp-validation-for="Introduction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control" id="editor"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#image-input').change(function () {
+            var input = this;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview').attr('src', e.target.result).removeClass('d-none');
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                $('#preview').addClass('d-none');
+            }
+        });
+
+        // Kiểm tra giá trị của Model.ImagePath
+        var imagePath = "@Model.ImagePath";
+        if (imagePath == null || imagePath.trim() === "") {
+            $('#preview').addClass('d-none');
+        }
+    });
+</script>
+}
