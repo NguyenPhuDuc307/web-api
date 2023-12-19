@@ -8,7 +8,7 @@ In this section:
 - Add the API code
 - Use Swagger for testing
 
-Before coming to this guide, please refer to [File Storage](https://github.com/NguyenPhuDuc307/file-storage).
+Before coming to this guide, please refer to [Part 9: File Storage](https://github.com/NguyenPhuDuc307/file-storage).
 
 ## Add a `Swagger` packages and configuration
 
@@ -193,4 +193,4 @@ Let's try calling one method to see the results:
 
 Refer to the [Create web APIs with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/web-api/) by `Microsoft`.
 
-Next let's [HttpClient](https://github.com/NguyenPhuDuc307/http-client).
+Next let's [Part 11: Add Identity](https://github.com/NguyenPhuDuc307/add-identity).
