@@ -193,4 +193,4 @@ Let's try calling one method to see the results:
 
 Refer to the [Create web APIs with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/web-api/) by `Microsoft`.
 
-Next let's [Part 11: Add Identity](https://github.com/NguyenPhuDuc307/add-identity).
+Next let's [Part 11: Add Identity on ASP.NET Core](https://github.com/NguyenPhuDuc307/add-identity).
