@@ -36,7 +36,14 @@ namespace CourseManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll(string? sortOrder, string? currentFilter, string? searchString, int? pageNumber, int pageSize = 10)
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _courseService.GetAll();
+            return Ok(result);
+        }
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetAllFilter(string? sortOrder, string? currentFilter, string? searchString, int? pageNumber, int pageSize = 10)
         {
             var result = await _courseService.GetAllFilter(sortOrder!, currentFilter!, searchString!, pageNumber, pageSize);
             return Ok(result);
